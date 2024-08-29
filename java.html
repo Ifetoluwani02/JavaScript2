@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Functions Demo</title>
+     <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #444;
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            color: #555;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 10px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-left: 4px solid #007bff;
+            border-radius: 4px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        @media (max-width: 600px) {
+
+            input[type="text"],
+            input[type="number"] {
+                width: calc(100% - 10px);
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style> 
+</head>
+
+<body>
+
+    <h1>JavaScript Functions Demo</h1>
+    <div class="container">
+        <!-- Reverse a String -->
+        <div class="form-group">
+            <h3>Reverse a String</h3>
+            <input type="text" id="reverseInput" placeholder="Enter a string">
+            <button onclick="showReverse()">Reverse</button>
+            <div class="result" id="reverseResult"></div>
+        </div>
+
+        <!-- Count Characters -->
+        <div class="form-group">
+            <h3>Count Characters</h3>
+            <input type="text" id="countInput" placeholder="Enter a string">
+            <button onclick="showCount()">Count</button>
+            <div class="result" id="countResult"></div>
+        </div>
+
+        <!-- Capitalize Words -->
+        <div class="form-group">
+            <h3>Capitalize Words</h3>
+            <input type="text" id="capitalizeInput" placeholder="Enter a sentence">
+            <button onclick="showCapitalized()">Capitalize</button>
+            <div class="result" id="capitalizeResult"></div>
+        </div>
+
+        <!-- Find Maximum and Minimum -->
+        <div class="form-group">
+            <h3>Find Maximum and Minimum in an Array</h3>
+            <input type="text" id="arrayInput" placeholder="Enter numbers separated by commas">
+            <button onclick="showMaxMin()">Find Max & Min</button>
+            <div class="result" id="maxMinResult"></div>
+        </div>
+
+        <!-- Sum of Array -->
+        <div class="form-group">
+            <h3>Sum of Array</h3>
+            <button onclick="showSum()">Calculate Sum</button>
+            <div class="result" id="sumResult"></div>
+        </div>
+
+        <!-- Factorial -->
+        <div class="form-group">
+            <h3>Factorial</h3>
+            <input type="number" id="factorialInput" placeholder="Enter a number">
+            <button onclick="showFactorial()">Calculate Factorial</button>
+            <div class="result" id="factorialResult"></div>
+        </div>
+
+        <!-- Prime Number Check -->
+        <div class="form-group">
+            <h3>Prime Number Check</h3>
+            <input type="number" id="primeInput" placeholder="Enter a number">
+            <button onclick="showPrime()">Check Prime</button>
+            <div class="result" id="primeResult"></div>
+        </div>
+
+        <!-- Fibonacci Sequence -->
+        <div class="form-group">
+            <h3>Fibonacci Sequence</h3>
+            <input type="number" id="fibonacciInput" placeholder="Enter number of terms">
+            <button onclick="showFibonacci()">Generate Fibonacci</button>
+            <div class="result" id="fibonacciResult"></div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript functions
+        function reverseString(str) {
+            return str.split('').reverse().join('');
+        }
+
+        function countCharacters(str) {
+            return str.length;
+        }
+
+        function capitalizeWords(sentence) {
+            return sentence.split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ');
+        }
+
+        function findMax(arr) {
+            return Math.max(...arr);
+        }
+
+        function findMin(arr) {
+            return Math.min(...arr);
+        }
+
+        function sumArray(arr) {
+            return arr.reduce((sum, current) => sum + current, 0);
+        }
+
+        function factorial(n) {
+            if (n === 0 || n === 1) {
+                return 1;
+            }
+            return n * factorial(n - 1);
+        }
+
+        function isPrime(num) {
+            if (num <= 1) return false;
+            if (num === 2) return true;
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+
+        function fibonacciSequence(n) {
+            const fib = [0, 1];
+            for (let i = 2; i < n; i++) {
+                fib[i] = fib[i - 1] + fib[i - 2];
+            }
+            return fib.slice(0, n);
+        }
+
+        // Functions to show results in HTML
+        function showReverse() {
+            const str = document.getElementById("reverseInput").value;
+            const result = reverseString(str);
+            document.getElementById("reverseResult").textContent = `Reversed: ${result}`;
+        }
+
+        function showCount() {
+            const str = document.getElementById("countInput").value;
+            const result = countCharacters(str);
+            document.getElementById("countResult").textContent = `Character Count: ${result}`;
+        }
+
+        function showCapitalized() {
+            const sentence = document.getElementById("capitalizeInput").value;
+            const result = capitalizeWords(sentence);
+            document.getElementById("capitalizeResult").textContent = `Capitalized: ${result}`;
+        }
+
+        function showMaxMin() {
+            const arrayInput = document.getElementById("arrayInput").value;
+            const arr = arrayInput.split(',').map(Number);
+            const max = findMax(arr);
+            const min = findMin(arr);
+            document.getElementById("maxMinResult").textContent = `Max: ${max}, Min: ${min}`;
+        }
+
+        function showSum() {
+            const arrayInput = document.getElementById("arrayInput").value;
+            const arr = arrayInput.split(',').map(Number);
+            const result = sumArray(arr);
+            document.getElementById("sumResult").textContent = `Sum: ${result}`;
+        }
+
+        function showFactorial() {
+            const n = parseInt(document.getElementById("factorialInput").value);
+            const result = factorial(n);
+            document.getElementById("factorialResult").textContent = `Factorial: ${result}`;
+        }
+
+        function showPrime() {
+            const num = parseInt(document.getElementById("primeInput").value);
+            const result = isPrime(num);
+            document.getElementById("primeResult").textContent = result ? `${num} is a prime number` : `${num} is not a prime number`;
+        }
+
+        function showFibonacci() {
+            const n = parseInt(document.getElementById("fibonacciInput").value);
+            const result = fibonacciSequence(n).join(', ');
+            document.getElementById("fibonacciResult").textContent = `Fibonacci: ${result}`;
+        }
+    </script>
+
+</body>
+
+</html>
